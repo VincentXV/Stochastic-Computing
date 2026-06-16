@@ -8,6 +8,7 @@
 // Note: 目前clk的產生是一高一低，因此main_time += 2時，才產生一個完整的clk
 
 vluint64_t main_time = 0;                        // 模擬計時器
+int time_len = 32;                              // 模擬時間長度
 
 double sc_time_stamp(int len)
 {
@@ -15,8 +16,8 @@ double sc_time_stamp(int len)
 }
 
 int main(int argc, char **argv){
-    verilated::commandArgs(argc, argv);     // 解析 command line 參數
-    verilated::traceEverOn(true);           // 開啟 trace 功能
+    Verilated::commandArgs(argc, argv);     // 解析 command line 參數
+    Verilated::traceEverOn(true);           // 開啟 trace 功能
 
     VerilatedVcdC* tfp = new VerilatedVcdC; // 建立 trace wave 物件
     Vtop* top = new Vtop;               // 建立模組實例
@@ -25,7 +26,7 @@ int main(int argc, char **argv){
 
     top -> clk = 0;                         // 時鐘初始值
 
-    while( sc_time_stamp(33) < 32 && !verilated::gotFinish() ){
+    while( sc_time_stamp(time_len + 1) < time_len && !Verilated::gotFinish() ){
         top -> clk = !top -> clk;           // 時鐘翻轉
         top -> eval();                      // 計算模組內部訊號狀態
         tfp -> dump(main_time);             // 記錄波形資料

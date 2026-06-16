@@ -1,6 +1,10 @@
 Reference:
 https://hackmd.io/BiB4yBbkTKyawxx9fLA5Lw?view
 
+LFSR & WBG - https://hackmd.io/@Vincent1999/BJUiP_zrgg/edit
+
+
+
 Compile:
 1. `verilator -Wall --cc --exe top.v testbench.cpp --trace --fno-dfg`
     * 可再加`--build`，省略後續的make(步驟2)

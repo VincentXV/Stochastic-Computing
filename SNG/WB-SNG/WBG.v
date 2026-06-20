@@ -1,16 +1,13 @@
 module WBG (
     input clk,
     input reg [3:0] bn = 4'b1011,
-    output sn,
-    output [3:0] lfsr_out
+    output sn
     );
 
     wire l3, l2, l1, l0;
     wire w3, w2, w1, w0;
     wire o3, o2, o1, o0;
 
-    assign lfsr_out = {l3, l2, l1, l0};
-    
     LFSR4 lfsr(clk, {l3, l2, l1, l0});
     
     assign w3 = l3;

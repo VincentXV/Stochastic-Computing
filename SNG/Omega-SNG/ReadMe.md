@@ -31,6 +31,7 @@ Note: for test, this project is base on 3-bits（小數精確度，實際到SC�
   * `--trace`: 開啟波形追蹤（Waveform Tracing）功能
   * 如果需要測試單一模組在增加下列參數：
     * `--top-module module_name`
+    * `src/module.v`
 
 ## Big Picture
 ![image](https://hackmd.io/_uploads/HkbFGGWUgl.png)

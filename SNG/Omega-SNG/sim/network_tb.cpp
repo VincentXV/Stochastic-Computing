@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "VOmega_L.h"
-//#include "VFlip_L.v"
+//#include "VOmega_L.h"
+#include "VFlip_L.h"
 #include "verilated_vcd_c.h"
 
 // 模板文件，請根據實際情況修改
@@ -21,31 +21,41 @@ int main(int argc, char **argv){
     Verilated::traceEverOn(true);               // 開啟 trace 功能
 
     VerilatedVcdC* tfp = new VerilatedVcdC;     // 建立 trace wave 物件
-    VOmega_L* top = new VOmega_L;               // 建立模組實例
-    //VFlip_L* top = new VFlip_L;               // 建立模組實例
+    //VOmega_L* top = new VOmega_L;               // 建立模組實例
+    VFlip_L* top = new VFlip_L;               // 建立模組實例
     top -> trace(tfp, 0);                       // 將模組訊號掛載到波形物件上，0 表示記錄所有層級
     tfp -> open("wave.vcd");                    // 開啟波形檔案
 
     
-    int input = 0b1111000;                      // 預設初始值=0x78=120
-    int sel = 0b000;                            // 預設初始值=0x0=0
+    int input = 0b11110000;                      // 預設初始值=0x78=120
+    int sel = 0b0000;                            // 預設初始值=0x0=0
     if (argc > 1){
         try{
+            printf("輸入的參數為: %s %s\n", argv[1], argv[2]);
             input = std::stoi(argv[1], nullptr, 2); // 將輸入的二進位字串轉換為整數
-            printf("轉換後的輸入整數值為: %d=0x%X=0b%04b\n", input, input, input);
+            sel = std::stoi(argv[2], nullptr, 2);   // 將選擇訊號的二進位字串轉換為整數
+            printf("輸入參數字串為: %s\n", argv[1]);
+            printf("解析後的十進位值為: %d\n", input);
+            printf("解析後的十六進位為: 0x%X\n", input);
+            printf("還原為八位元二進位: 0b%s\n\n", std::bitset<8>(input).to_string().c_str());
+
+            printf("選擇參數字串為: %s\n", argv[2]);
+            printf("解析後的十進位值為: %d\n", sel);
+            printf("解析後的十六進位為: 0x%X\n", sel);
+            printf("還原為八位元二進位: 0b%s\n", std::bitset<4>(sel).to_string().c_str());
         } catch (const std::invalid_argument& e) {
-            printf("無效的輸入，請輸入二進位字串\n");
+            printf("無效的輸入，請輸入兩個二進位字串\n");
             return 1;
         }
     }
     else{
-        printf("使用預設初始值=0xA=10\n");
+        printf("使用預設初始值:input = 0x78 = 0b 1111 0000\n");
+        printf("及sel = 0x0 = 0b0000\n");
     }
-    top -> in = input & 0xF;                    // 設定模組輸入訊號
-    top -> clk = 0;                             // 時鐘初始值
+    top -> I = input & 0xFF;                    // 設定模組輸入訊號
+    top -> sel = sel & 0xF;                     // 設定模組選擇訊號
 
     while( sc_time_stamp(time_len + 1) < time_len && !Verilated::gotFinish() ){
-        top -> clk = !top -> clk;               // 時鐘翻轉
         top -> eval();                          // 計算模組內部訊號狀態
         tfp -> dump(main_time);                 // 記錄波形資料
 

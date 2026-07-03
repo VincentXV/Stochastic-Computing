@@ -1,6 +1,6 @@
 module LFSR4(
     input clk,
-    output reg [3:0] LFSR = 4'b0010
+    output reg [3:0] LFSR = 4'b1010
     );
 
     wire feedback = LFSR[0] ^ LFSR[1];

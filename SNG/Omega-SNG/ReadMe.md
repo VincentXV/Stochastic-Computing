@@ -21,7 +21,7 @@ Note: for test, this project is base on 3-bits（小數精確度，實際到SC�
 
 ----
 ## 編譯
-指令：`verilator --cc -f filelist.f --exe sim/testbench_xxx.cpp --build --trace`
+指令：`verilator --cc -f filelist.f --top-module top --exe sim/testbench_xxx.cpp --build --trace`
 * 參數說明：
   * `--cc`: 指定輸出格式為 C++
     * 告訴 Verilator 將你輸入的 Verilog 數位電路原始碼，轉換成 C++ 的類別（Classes）與標頭檔（.h 和 .cpp）。（若要轉換成 SystemC，則會使用 --sc）。
@@ -29,7 +29,7 @@ Note: for test, this project is base on 3-bits（小數精確度，實際到SC�
   * `--exe`: 指定包含 main() 函式的 C++ 封裝檔案（Wrapper/Testbench）
   * `--build`: 自動觸發後續的 C++ 編譯與連結步驟
   * `--trace`: 開啟波形追蹤（Waveform Tracing）功能
-  * 如果需要測試單一模組在增加下列參數：
+  * 如果需要測試單一模組在修改或新增下列參數：
     * `--top-module module_name`
     * `src/module.v`
 

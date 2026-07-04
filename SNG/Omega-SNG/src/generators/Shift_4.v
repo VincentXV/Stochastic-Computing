@@ -1,5 +1,4 @@
 module Shift_4(
-    input clk,
     input [3:0] in,
     output [3:0] out
     );

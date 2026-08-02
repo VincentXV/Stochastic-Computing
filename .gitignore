@@ -4,3 +4,12 @@
 # 忽略任何目錄下的 *.vcd 檔案
 # 這是 Verilator 模擬時產生的波形檔案
 *.vcd
+
+# 忽略 Python 虛擬環境與系統快取
+draw/
+__pycache__/
+.DS_Store
+
+# 忽略自動化腳本產生的數據與圖片
+*.png
+*.csv

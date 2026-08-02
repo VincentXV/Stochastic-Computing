@@ -48,7 +48,29 @@ $$\text{sn} = (w_3 \cdot bn[3]) \mid (w_2 \cdot bn[2]) \mid (w_1 \cdot bn[1]) \m
   - 方式：
     - 重新調整WBG長度為６bits LFSR及產生$2^6=64$ bits 的SN
     - 並且進行量測，截斷各長度的準確度，並與論文得到的數據進行比較
+    - Note: 繪圖需要一些python的套件，我自己是只將其裝在虛擬環境(此處環境名稱實為draw)上
+      - 指令：
+      - ```text
+        1. 建立虛擬環境 (名稱以 myenv 為例)
+        python3 -m venv myenv
+
+        2. 啟動虛擬環境
+        source myenv/bin/activate
+
+        3. 正常使用 pip 安裝套件
+        pip install pandas matplotlib numpy
+        
+        4. 關閉（退出）目前正在執行的 Python 虛擬環境
+        deactivate
+    - 繪圖指令：
+      - `./run_sim.sh`
+        - note: 需要有執行權限`chmod +x run_sim.sh`
+      - `python3 plot_accuracy.py`
+        - note: 需要再有相關套件的環境
+        - `source draw/bin/activate`
+        - `deactivate`
   - 結果：
+    - <img alt="Image" src="https://github.com/user-attachments/assets/b35dfffb-6c64-42fb-93a9-66816a9e40d4" />
 
 ---
 ## 檔案結構
@@ -65,6 +87,9 @@ WB-SNG/
 │   └── testbench_4bits.cpp
 │   └── testbench_6bits.cpp
 ├── obj_dir/            <-- (由 Verilator 自動生成) 放置編譯出來的中繼檔與執行檔
+├── run_sim.sh          <-- 多次執行不同參數的腳本，並將準確度紀錄至lfsr_results.csv
+├── lfsr_results.csv    <-- 精確度數據紀錄檔
+├── plot_accuracy.py    <-- 將數據繪製成圖表
 └── ReadMe.md           <-- 專案說明文件
 ```
 

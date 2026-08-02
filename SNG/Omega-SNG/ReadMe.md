@@ -1,7 +1,10 @@
 [TOC]
 
+---
 paper: https://hackmd.io/@Vincent1999/r150twcrxx
-Note: for test, this project is base on 3-bits（小數精確度，實際到SC為8-bits）
+
+>[!NOTE]
+>for test, this project is base on 3-bits（小數精確度，實際到SC為8-bits）
 
 ----
 ## 檔案架構
@@ -21,7 +24,7 @@ Note: for test, this project is base on 3-bits（小數精確度，實際到SC�
 
 ----
 ## 編譯
-指令：`verilator --cc -f filelist.f --top-module top --exe sim/testbench_xxx.cpp --build --trace`
+指令：`verilator --cc -f filelist.f --top-module top --exe sim/testbench.cpp --build --trace src/top.v`
 * 參數說明：
   * `--cc`: 指定輸出格式為 C++
     * 告訴 Verilator 將你輸入的 Verilog 數位電路原始碼，轉換成 C++ 的類別（Classes）與標頭檔（.h 和 .cpp）。（若要轉換成 SystemC，則會使用 --sc）。
@@ -44,3 +47,6 @@ Note: for test, this project is base on 3-bits（小數精確度，實際到SC�
 ![image](https://hackmd.io/_uploads/r1OMkOMUxg.png)
 ![image](https://hackmd.io/_uploads/Hkbfx1W7Mg.png)
 
+### Correlation計算方式
+![image](https://hackmd.io/_uploads/r1Oep_GSee.png)
+詳細說明與範例，請查看[連結](https://hackmd.io/vkPsSuIaTuiOcACxeeaPtw?both#Correlated-and-Uncorrelated)

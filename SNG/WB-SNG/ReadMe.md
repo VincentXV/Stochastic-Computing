@@ -13,6 +13,7 @@ Reference : https://hackmd.io/@Vincent1999/BJUiP_zrgg
 :::info
 在撰寫Makefile，將編譯方式簡化如下
 :::
+
 ```text
 make            <--- 編譯
 make run        <--- 執行

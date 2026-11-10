@@ -31,7 +31,7 @@ $ ./obj_dir/VLFSR4
 $ gtkwave wave.vcd
 
 // for test BSNG in SNG/B-SNG
-$ verilator -cc -exe sim/testbench_BSNG.cpp --build --trace -I rtl/4bits/BSNG.v -Irtl/4bits/ rtl/4bits/BSNG.v
+$ verilator -cc -exe sim/testbench_BSNG.cpp --build --trace -Irtl/4bits/ rtl/4bits/BSNG.v
 $ ./obj_dir/VBSNG
 or 
 $ ./obj_dir/VBSNG <參數，如：1101>

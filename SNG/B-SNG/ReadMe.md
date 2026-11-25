@@ -1,7 +1,7 @@
 # Bipolar SNG
 
 ---
-筆記連結：https://hackmd.io/@Vincent1999/BiopolarSNG
+筆記連結：https://hackmd.io/@Vincent1999/BipolarSNG
 論文連結：https://ieeexplore.ieee.org/document/11465213
 
 ---
@@ -11,13 +11,14 @@
 ---
 ## 專案架構
 ```text
-WB-SNG/
+B-SNG/
 ├── rtl/                <-- 放置所有 Verilog/SystemVerilog 原始碼
 │   ├── 4bits           <-- LFSR bit數
 │       ├── LFSR.v          
-│       └── WBG.v           
+│       └── BSNG.v           
 ├── sim/                <-- 放置模擬相關檔案 (Testbench)
-│   └── testbench_4bits.cpp
+│   ├──  testbench_4bits.cpp
+│   └──  LFSR_tb.cpp
 ├── obj_dir/            <-- (由 Verilator 自動生成) 放置編譯出來的中繼檔與執行檔
 └── ReadMe.md           <-- 專案說明文件
 ```
